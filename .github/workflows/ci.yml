@@ -62,7 +62,7 @@ jobs:
       - name: Android Assemble
         run: |
           cd Source/Android
-          ./gradlew --stacktrace assemble
+          ./gradlew --stacktrace assembleDebug
           echo "Done"
 
       - name: Upload Debug APK
