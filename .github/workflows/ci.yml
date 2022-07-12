@@ -55,6 +55,7 @@ jobs:
         run: |
           cd teapots
           ./gradlew --stacktrace assemble
+          echo "Done"
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v2
