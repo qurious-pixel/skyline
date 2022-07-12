@@ -32,9 +32,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cxx-
 
+      - name: Install CMAKE Build
+        run: |
+          CMAKEVER=3.22.5
+          wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}.tar.gz
+          tar -xf cmake-${CMAKEVER}.tar.gz
+          cd cmake-${CMAKEVER}.tar.gz
+          ./bootstrap
+          make
+          sudo make install
+          cmake --version
+
       - name: Install Ninja Build
         run: |
-          sudo apt-get install -y ninja-build cmake
+          sudo apt-get install -y ninja-build
           ln -s /usr/bin/ninja .
 
       - name: Install CMake & Android NDK
