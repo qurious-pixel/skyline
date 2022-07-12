@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+          repository: android/ndk-samples
+          ref: master
 
       - name: Restore Gradle Cache
         uses: actions/cache@v2
@@ -50,7 +52,9 @@ jobs:
           path: app/build/reports/lint-results-debug.html
 
       - name: Android Assemble
-        run: ./gradlew --stacktrace assemble
+        run: |
+          cd teapots
+          ./gradlew --stacktrace assemble
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v2
