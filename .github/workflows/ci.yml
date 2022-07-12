@@ -64,7 +64,7 @@ jobs:
 
       - name: Android Assemble
         run: |
-          cd teapots
+          cd hello-jniCallback
           ./gradlew --stacktrace assemble
           echo "Done"
 
