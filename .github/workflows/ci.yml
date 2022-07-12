@@ -37,7 +37,7 @@ jobs:
           CMAKEVER=3.22.5
           wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}.tar.gz
           tar -xf cmake-${CMAKEVER}.tar.gz
-          cd cmake-${CMAKEVER}.tar.gz
+          cd cmake-${CMAKEVER}
           ./bootstrap
           make
           sudo make install
