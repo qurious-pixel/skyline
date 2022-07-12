@@ -64,6 +64,8 @@ jobs:
 
       - name: Android Assemble
         run: |
+          sed -i 's/targetSdkVersion 28/targetSdkVersion 29/g' hello-jniCallback/app/build.gradle
+          cat hello-jniCallback/app/build.gradle
           cd hello-jniCallback
           ./gradlew --stacktrace assemble
           echo "Done"
