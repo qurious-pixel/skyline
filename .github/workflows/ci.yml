@@ -10,14 +10,14 @@ jobs:
 
     steps:
       - name: Git Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
-          repository: android/ndk-samples
+          repository: dolphin-emu/dolphin
           ref: master
 
       - name: Restore Gradle Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /root/.gradle/
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/build.gradle') }}
@@ -38,12 +38,6 @@ jobs:
           wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}-linux-x86_64.tar.gz
           tar -xf cmake-${CMAKEVER}-linux-x86_64.tar.gz
           sudo ln -sf cmake-${CMAKEVER}-linux-x86_64/bin/cmake /usr/bin/
-          #wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}.tar.gz
-          #tar -xf cmake-${CMAKEVER}.tar.gz
-          #cd cmake-${CMAKEVER}
-          #./bootstrap
-          #make
-          #sudo make install
           cmake --version
 
       - name: Install Ninja Build
@@ -67,26 +61,24 @@ jobs:
 
       - name: Android Assemble
         run: |
-          sed -i 's/targetSdkVersion 28/targetSdkVersion 29/g' hello-jniCallback/app/build.gradle
-          cat hello-jniCallback/app/build.gradle
-          cd hello-jniCallback
+          cd Source/Android
           ./gradlew --stacktrace assemble
           echo "Done"
 
       - name: Upload Debug APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app-debug.apk
-          path: hello-jniCallback/app/build/outputs/apk/debug/app-debug.apk
+          path: Source/Android/app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload Release APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
           path: app/build/outputs/apk/release/
 
       - name: Upload R8 Mapping
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: mapping.txt
           path: app/build/outputs/mapping/release/
