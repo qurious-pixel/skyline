@@ -35,12 +35,15 @@ jobs:
       - name: Install CMAKE Build
         run: |
           CMAKEVER=3.22.5
-          wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}.tar.gz
+          wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}-linux-x86_64.tar.gz
           tar -xf cmake-${CMAKEVER}.tar.gz
-          cd cmake-${CMAKEVER}
-          ./bootstrap
-          make
-          sudo make install
+          ln -sf cmake-${CMAKEVER}-linux-x86_64/bin/cmake /usr/bin/
+          #wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}.tar.gz
+          #tar -xf cmake-${CMAKEVER}.tar.gz
+          #cd cmake-${CMAKEVER}
+          #./bootstrap
+          #make
+          #sudo make install
           cmake --version
 
       - name: Install Ninja Build
