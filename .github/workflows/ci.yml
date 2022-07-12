@@ -36,7 +36,7 @@ jobs:
         run: |
           CMAKEVER=3.22.5
           wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}-linux-x86_64.tar.gz
-          tar -xf cmake-${CMAKEVER}.tar.gz
+          tar -xf cmake-${CMAKEVER}-linux-x86_64.tar.gz
           ln -sf cmake-${CMAKEVER}-linux-x86_64/bin/cmake /usr/bin/
           #wget https://github.com/Kitware/CMake/releases/download/v${CMAKEVER}/cmake-${CMAKEVER}.tar.gz
           #tar -xf cmake-${CMAKEVER}.tar.gz
