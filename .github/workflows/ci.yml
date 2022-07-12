@@ -40,16 +40,16 @@ jobs:
       - name: Install CMake & Android NDK
         run: echo "yes" | $ANDROID_HOME/tools/bin/sdkmanager "cmake;3.18.1" "ndk;24.0.7856742" --channel=3 | grep -v = || true
 
-      - name: Android Lint
-        run: |
-          chmod +x gradlew
-          ./gradlew --stacktrace lint
+      #- name: Android Lint
+      #  run: |
+      #    chmod +x gradlew
+      #    ./gradlew --stacktrace lint
 
-      - name: Upload Lint Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: lint-result.html
-          path: app/build/reports/lint-results-debug.html
+      #- name: Upload Lint Report
+      #  uses: actions/upload-artifact@v2
+      #  with:
+      #    name: lint-result.html
+      #    path: app/build/reports/lint-results-debug.html
 
       - name: Android Assemble
         run: |
